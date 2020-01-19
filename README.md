@@ -1,13 +1,13 @@
 ## Aion
 Aion is a utility crate, inspired by rails, for you to write `Duration` and `DateTime` like this: 
-```rustc
+```rust
 let now = Utc::now();
 let two_days_later_1 = now + 2.days(); 
 let two_days_later_2 = 2.days().later();
 ```
 
 ## Example
-```rustc
+```rust
 fn main() {
   println!("2 days later: {}", 2.days().later());
   println!("3 days ago: {}", 3.days().ago());
