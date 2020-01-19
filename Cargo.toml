@@ -3,6 +3,9 @@ name = "aion"
 version = "0.1.0"
 authors = ["Gan Jun Kai <kuhn96@gmail.com>"]
 edition = "2018"
+description = "A friendly Rust duration and datetime utility crate"
+repository = "https://github.com/jk-gan/aion"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
