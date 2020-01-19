@@ -19,3 +19,5 @@ fn main() {
   println!("8 milliseconds later: {}", 7.milliseconds().later());
 }
 ```
+
+This crate is using [chrono](https://github.com/chronotope/chrono). Thanks for this awesome crate.
