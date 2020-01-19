@@ -1,32 +1,67 @@
 use chrono::{DateTime, Duration, Utc};
 
-pub trait Day {
+pub trait DurationExtention {
+    fn weeks(self) -> Duration;
     fn days(self) -> Duration;
+    fn hours(self) -> Duration;
+    fn minutes(self) -> Duration;
+    fn seconds(self) -> Duration;
+    fn milliseconds(self) -> Duration;
+    fn microseconds(self) -> Duration;
+    fn nanoseconds(self) -> Duration;
 }
 
-pub trait Later {
-    fn later(self) -> DateTime<Utc>;
-}
-
-pub trait Ago {
+pub trait DateTimeExtention {
     fn ago(self) -> DateTime<Utc>;
+    fn later(self) -> DateTime<Utc>;
+    fn from_now(self) -> DateTime<Utc>;
 }
 
-impl Day for i64 {
+impl DurationExtention for i64 {
+    fn weeks(self) -> Duration {
+        Duration::weeks(self)
+    }
+
     fn days(self) -> Duration {
         Duration::days(self)
     }
-}
 
-impl Later for Duration {
-    fn later(self) -> DateTime<Utc> {
-        Utc::now() + self
+    fn hours(self) -> Duration {
+        Duration::hours(self)
+    }
+
+    fn minutes(self) -> Duration {
+        Duration::minutes(self)
+    }
+
+    fn seconds(self) -> Duration {
+        Duration::seconds(self)
+    }
+
+    fn milliseconds(self) -> Duration {
+        Duration::milliseconds(self)
+    }
+
+    fn microseconds(self) -> Duration {
+        Duration::microseconds(self)
+    }
+
+    fn nanoseconds(self) -> Duration {
+        Duration::nanoseconds(self)
     }
 }
 
-impl Ago for Duration {
+impl DateTimeExtention for Duration {
     fn ago(self) -> DateTime<Utc> {
         Utc::now() - self
+    }
+
+    fn later(self) -> DateTime<Utc> {
+        Utc::now() + self
+    }
+
+    fn from_now(self) -> DateTime<Utc> {
+        Utc::now() + self
     }
 }
 
@@ -42,7 +77,11 @@ mod tests {
 
     #[test]
     fn duration() {
+        assert_eq!(2.weeks(), Duration::weeks(2));
         assert_eq!(2.days(), Duration::days(2));
+        assert_eq!(2.hours(), Duration::hours(2));
+        assert_eq!(2.minutes(), Duration::minutes(2));
+        assert_eq!(2.seconds(), Duration::seconds(2));
     }
 
     #[test]
