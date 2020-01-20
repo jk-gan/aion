@@ -7,6 +7,7 @@ let two_days_later_2 = 2.days().later();
 ```
 
 ## Installation
+Add this to your `Cargo.toml` file:
 ```toml
 [dependencies]
 aion = "0.1"
