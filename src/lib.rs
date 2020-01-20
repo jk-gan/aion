@@ -86,6 +86,9 @@ mod tests {
         assert_eq!(2.hours(), Duration::hours(2));
         assert_eq!(2.minutes(), Duration::minutes(2));
         assert_eq!(2.seconds(), Duration::seconds(2));
+        assert_eq!(2.milliseconds(), Duration::milliseconds(2));
+        assert_eq!(2.microseconds(), Duration::microseconds(2));
+        assert_eq!(2.nanoseconds(), Duration::nanoseconds(2));
     }
 
     #[test]
