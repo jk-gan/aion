@@ -6,8 +6,17 @@ let two_days_later_1 = now + 2.days();
 let two_days_later_2 = 2.days().later();
 ```
 
+## Installation
+```toml
+[dependencies]
+aion = "0.1"
+```
+
 ## Example
 ```rust
+use aion::*;
+use chrono::Utc;
+
 fn main() {
   println!("2 days later: {}", 2.days().later());
   println!("3 days ago: {}", 3.days().ago());
