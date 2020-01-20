@@ -1,5 +1,5 @@
 ## Aion
-Aion is a utility crate, inspired by rails, allow you to write `Duration` and `DateTime` in a friendly way: 
+Aion is a utility crate, inspired by rails, allow you to write `Duration` and `DateTime` with a friendly way: 
 ```rust
 let now = Utc::now();
 let two_days_later_1 = now + 2.days(); 
