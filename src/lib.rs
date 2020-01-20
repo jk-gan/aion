@@ -1,6 +1,6 @@
 use chrono::{DateTime, Duration, Utc};
 
-pub trait DurationExtention {
+pub trait DurationExtension {
     fn weeks(self) -> Duration;
     fn days(self) -> Duration;
     fn hours(self) -> Duration;
@@ -11,13 +11,13 @@ pub trait DurationExtention {
     fn nanoseconds(self) -> Duration;
 }
 
-pub trait DateTimeExtention {
+pub trait DateTimeExtension {
     fn ago(self) -> DateTime<Utc>;
     fn later(self) -> DateTime<Utc>;
     fn from_now(self) -> DateTime<Utc>;
 }
 
-impl DurationExtention for i64 {
+impl DurationExtension for i64 {
     fn weeks(self) -> Duration {
         Duration::weeks(self)
     }
@@ -51,7 +51,7 @@ impl DurationExtention for i64 {
     }
 }
 
-impl DateTimeExtention for Duration {
+impl DateTimeExtension for Duration {
     fn ago(self) -> DateTime<Utc> {
         Utc::now() - self
     }
