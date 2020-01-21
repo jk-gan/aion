@@ -1,4 +1,4 @@
-## Aion
+## Aion [![](http://meritbadge.herokuapp.com/aion)](https://crates.io/crates/aion)
 Aion is a utility crate, inspired by rails, that allows you to write `Duration` and `DateTime` in a friendly way:
 ```rust
 // Easily represent a chrono::Duration
@@ -6,6 +6,8 @@ let two_days = 2.days();
 let attention_span = 1.seconds();
 
 // Add or subtract durations from the current time (UTC)
+let now = Utc::now();
+let three_hours_from_now = now + 3.hours();
 let two_hours_from_now = 2.hours().from_now();
 let last_week = 7.days().ago(); // or 1.weeks().ago()
 
@@ -19,7 +21,13 @@ let boxing_day = 1.days().after(christmas);
 Add this to your `Cargo.toml` file:
 ```toml
 [dependencies]
-aion = "0.1"
+aion = "0.2"
+```
+
+## Example
+The example is located in `example` folder. You can run it by using
+```bash
+cargo run --example example
 ```
 
 ## Limitations
