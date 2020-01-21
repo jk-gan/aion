@@ -12,9 +12,22 @@ pub trait DurationExtension {
 }
 
 pub trait DateTimeExtension {
-    fn ago(self) -> DateTime<Utc>;
-    fn later(self) -> DateTime<Utc>;
-    fn from_now(self) -> DateTime<Utc>;
+    fn before(self, other: DateTime<Utc>) -> DateTime<Utc>;
+    fn after(self, other: DateTime<Utc>) -> DateTime<Utc>;
+
+    fn ago(self) -> DateTime<Utc>
+    where
+        Self: DateTimeExtension + Sized,
+    {
+        self.before(Utc::now())
+    }
+
+    fn from_now(self) -> DateTime<Utc>
+    where
+        Self: DateTimeExtension + Sized,
+    {
+        self.after(Utc::now())
+    }
 }
 
 macro_rules! duration_extension {
@@ -40,16 +53,12 @@ duration_extension!(
 );
 
 impl DateTimeExtension for Duration {
-    fn ago(self) -> DateTime<Utc> {
-        Utc::now() - self
+    fn before(self, other: DateTime<Utc>) -> DateTime<Utc> {
+        other - self
     }
 
-    fn later(self) -> DateTime<Utc> {
-        Utc::now() + self
-    }
-
-    fn from_now(self) -> DateTime<Utc> {
-        Utc::now() + self
+    fn after(self, other: DateTime<Utc>) -> DateTime<Utc> {
+        other + self
     }
 }
 
@@ -59,26 +68,26 @@ mod tests {
     use chrono::{Duration, Utc};
 
     #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
-
-    #[test]
     fn duration() {
         assert_eq!(2.weeks(), Duration::weeks(2));
         assert_eq!(2.days(), Duration::days(2));
         assert_eq!(2.hours(), Duration::hours(2));
         assert_eq!(2.minutes(), Duration::minutes(2));
         assert_eq!(2.seconds(), Duration::seconds(2));
+        assert_eq!(2.milliseconds(), Duration::milliseconds(2));
+        assert_eq!(2.microseconds(), Duration::microseconds(2));
+        assert_eq!(2.nanoseconds(), Duration::nanoseconds(2));
     }
 
     #[test]
-    fn days_later() {
-        assert_eq!(2.days().later(), Utc::now() + Duration::days(2));
+    fn days_before() {
+        let now = Utc::now();
+        assert_eq!(2.days().before(now), now - Duration::days(2));
     }
 
     #[test]
-    fn days_ago() {
-        assert_eq!(2.days().ago(), Utc::now() - Duration::days(2));
+    fn days_after() {
+        let now = Utc::now();
+        assert_eq!(2.days().after(now), now + Duration::days(2));
     }
 }

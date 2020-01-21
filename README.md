@@ -1,9 +1,18 @@
 ## Aion
-Aion is a utility crate, inspired by rails, allow you to write `Duration` and `DateTime` in a friendly way: 
+Aion is a utility crate, inspired by rails, that allows you to write `Duration` and `DateTime` in a friendly way:
 ```rust
-let now = Utc::now();
-let two_days_later_1 = now + 2.days(); 
-let two_days_later_2 = 2.days().later();
+// Easily represent a chrono::Duration
+let two_days = 2.days();
+let attention_span = 1.seconds();
+
+// Add or subtract durations from the current time (UTC)
+let two_hours_from_now = 2.hours().from_now();
+let last_week = 7.days().ago(); // or 1.weeks().ago()
+
+// More complex DateTimes can be represented using before() and after() methods
+let christmas = Utc.ymd(2020, 12, 25).and_hms(0, 0, 0);
+let two_weeks_before_christmas = 2.weeks().before(christmas);
+let boxing_day = 1.days().after(christmas);
 ```
 
 ## Installation
@@ -11,23 +20,6 @@ Add this to your `Cargo.toml` file:
 ```toml
 [dependencies]
 aion = "0.1"
-```
-
-## Example
-```rust
-use aion::*;
-use chrono::Utc;
-
-fn main() {
-  println!("2 days later: {}", 2.days().later());
-  println!("3 days ago: {}", 3.days().ago());
-  println!("3 days ago: {}", Utc::now() - 3.days());
-  println!("4 minutes later: {}", 4.minutes().later());
-  println!("5 weeks later: {}", 5.weeks().later());
-  println!("6 seconds ago: {}", 6.seconds().ago());
-  println!("7 days from now: {}", 7.days().from_now());
-  println!("8 milliseconds later: {}", 8.milliseconds().later());
-}
 ```
 
 ## Limitations
