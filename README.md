@@ -1,4 +1,4 @@
-## Aion [![](http://meritbadge.herokuapp.com/aion)](https://crates.io/crates/aion)
+## Aion [![](https://img.shields.io/crates/v/aion.svg)](https://crates.io/crates/aion)
 Aion is a utility crate, inspired by rails, that allows you to write `Duration` and `DateTime` in a friendly way:
 ```rust
 // Easily represent a chrono::Duration
