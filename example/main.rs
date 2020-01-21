@@ -9,6 +9,9 @@ fn main() {
     println!("Attention span: {:?}", attention_span);
 
     // Add or subtract durations from the current time (UTC)
+    let now = Utc::now();
+    let three_hours_from_now = now + 3.hours();
+    println!("3 hours from now: {}", three_hours_from_now);
     let two_hours_from_now = 2.hours().from_now();
     println!("2 hours from now: {}", two_hours_from_now);
     let last_week = 7.days().ago(); // or 1.weeks().ago()
