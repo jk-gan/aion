@@ -17,39 +17,27 @@ pub trait DateTimeExtension {
     fn from_now(self) -> DateTime<Utc>;
 }
 
-impl DurationExtension for i64 {
-    fn weeks(self) -> Duration {
-        Duration::weeks(self)
-    }
-
-    fn days(self) -> Duration {
-        Duration::days(self)
-    }
-
-    fn hours(self) -> Duration {
-        Duration::hours(self)
-    }
-
-    fn minutes(self) -> Duration {
-        Duration::minutes(self)
-    }
-
-    fn seconds(self) -> Duration {
-        Duration::seconds(self)
-    }
-
-    fn milliseconds(self) -> Duration {
-        Duration::milliseconds(self)
-    }
-
-    fn microseconds(self) -> Duration {
-        Duration::microseconds(self)
-    }
-
-    fn nanoseconds(self) -> Duration {
-        Duration::nanoseconds(self)
-    }
+macro_rules! duration_extension {
+    ($($type:ident), +) => {
+        impl DurationExtension for i64 {
+            $(
+                fn $type(self) -> Duration {
+                    Duration::$type(self)
+                }
+            )*
+        }
+    };
 }
+duration_extension!(
+    weeks,
+    days,
+    hours,
+    minutes,
+    seconds,
+    milliseconds,
+    microseconds,
+    nanoseconds
+);
 
 impl DateTimeExtension for Duration {
     fn ago(self) -> DateTime<Utc> {
