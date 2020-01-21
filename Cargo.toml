@@ -1,6 +1,6 @@
 [package]
 name = "aion"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Gan Jun Kai <kuhn96@gmail.com>"]
 edition = "2018"
 description = "A friendly Rust duration and datetime utility crate"
