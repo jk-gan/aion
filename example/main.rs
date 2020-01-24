@@ -1,10 +1,12 @@
 use aion::*;
-use chrono::{TimeZone, Utc};
+use chrono::{Duration, TimeZone, Utc};
 
 fn main() {
     // Easily represent a chrono::Duration
     let two_days = 2.days();
     println!("2 days: {:?}", two_days);
+    let two_and_half_days = 2.5.days();
+    println!("2.5 days: {:?}", two_and_half_days);
     let attention_span = 1.seconds();
     println!("Attention span: {:?}", attention_span);
 

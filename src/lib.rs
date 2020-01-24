@@ -30,6 +30,53 @@ pub trait DateTimeExtension {
     }
 }
 
+impl DurationExtension for f32 {
+    // 1.weeks() = 7.days()
+    // 1.days() = 24.hours()
+    // 1.hours() = 60.minutes()
+    // 1.minutes() = 60.seconds()
+    // 1.seconds() = 1000.milliseconds()
+    // 1.milliseconds() = 1000.microseconds()
+    // 1.microseconds() = 1000.nanoseconds()
+    fn weeks(self) -> Duration {
+        let num_of_microseconds = self * 7.0 * 24.0 * 60.0 * 60.0 * 1000.0 * 1000.0;
+        num_of_microseconds.microseconds()
+    }
+
+    fn days(self) -> Duration {
+        let num_of_microseconds = self * 24.0 * 60.0 * 60.0 * 1000.0 * 1000.0;
+        num_of_microseconds.microseconds()
+    }
+
+    fn hours(self) -> Duration {
+        let num_of_microseconds = self * 60.0 * 60.0 * 1000.0 * 1000.0 * 1000.0;
+        num_of_microseconds.microseconds()
+    }
+
+    fn minutes(self) -> Duration {
+        let num_of_microseconds = self * 60.0 * 1000.0 * 1000.0;
+        num_of_microseconds.microseconds()
+    }
+
+    fn seconds(self) -> Duration {
+        let num_of_microseconds = self * 1000.0 * 1000.0;
+        num_of_microseconds.microseconds()
+    }
+
+    fn milliseconds(self) -> Duration {
+        let num_of_microseconds = self * 1000.0;
+        num_of_microseconds.microseconds()
+    }
+
+    fn microseconds(self) -> Duration {
+        (self as i64).microseconds()
+    }
+
+    fn nanoseconds(self) -> Duration {
+        self.microseconds() / 1000
+    }
+}
+
 macro_rules! duration_extension {
     ($($type:ident), +) => {
         impl DurationExtension for i64 {
@@ -191,6 +238,11 @@ mod tests {
         assert_eq!(2u8.milliseconds(), Duration::milliseconds(2));
         assert_eq!(2u8.microseconds(), Duration::microseconds(2));
         assert_eq!(2u8.nanoseconds(), Duration::nanoseconds(2));
+    }
+
+    #[test]
+    fn float_duration() {
+        assert_eq!((1.5).days(), Duration::hours(36));
     }
 
     #[test]
