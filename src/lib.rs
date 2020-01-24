@@ -39,6 +39,48 @@ macro_rules! duration_extension {
                 }
             )*
         }
+        impl DurationExtension for i32 {
+            $(
+                fn $type(self) -> Duration {
+                    Duration::$type(self.into())
+                }
+            )*
+        }
+        impl DurationExtension for i16 {
+            $(
+                fn $type(self) -> Duration {
+                    Duration::$type(self.into())
+                }
+            )*
+        }
+        impl DurationExtension for i8 {
+            $(
+                fn $type(self) -> Duration {
+                    Duration::$type(self.into())
+                }
+            )*
+        }
+        impl DurationExtension for u32 {
+            $(
+                fn $type(self) -> Duration {
+                    Duration::$type(self.into())
+                }
+            )*
+        }
+        impl DurationExtension for u16 {
+            $(
+                fn $type(self) -> Duration {
+                    Duration::$type(self.into())
+                }
+            )*
+        }
+        impl DurationExtension for u8 {
+            $(
+                fn $type(self) -> Duration {
+                    Duration::$type(self.into())
+                }
+            )*
+        }
     };
 }
 duration_extension!(
@@ -77,6 +119,78 @@ mod tests {
         assert_eq!(2.milliseconds(), Duration::milliseconds(2));
         assert_eq!(2.microseconds(), Duration::microseconds(2));
         assert_eq!(2.nanoseconds(), Duration::nanoseconds(2));
+    }
+
+    #[test]
+    fn i32_duration() {
+        assert_eq!(2i32.weeks(), Duration::weeks(2));
+        assert_eq!(2i32.days(), Duration::days(2));
+        assert_eq!(2i32.hours(), Duration::hours(2));
+        assert_eq!(2i32.minutes(), Duration::minutes(2));
+        assert_eq!(2i32.seconds(), Duration::seconds(2));
+        assert_eq!(2i32.milliseconds(), Duration::milliseconds(2));
+        assert_eq!(2i32.microseconds(), Duration::microseconds(2));
+        assert_eq!(2i32.nanoseconds(), Duration::nanoseconds(2));
+    }
+
+    #[test]
+    fn i16_duration() {
+        assert_eq!(2i16.weeks(), Duration::weeks(2));
+        assert_eq!(2i16.days(), Duration::days(2));
+        assert_eq!(2i16.hours(), Duration::hours(2));
+        assert_eq!(2i16.minutes(), Duration::minutes(2));
+        assert_eq!(2i16.seconds(), Duration::seconds(2));
+        assert_eq!(2i16.milliseconds(), Duration::milliseconds(2));
+        assert_eq!(2i16.microseconds(), Duration::microseconds(2));
+        assert_eq!(2i16.nanoseconds(), Duration::nanoseconds(2));
+    }
+
+    #[test]
+    fn i8_duration() {
+        assert_eq!(2i8.weeks(), Duration::weeks(2));
+        assert_eq!(2i8.days(), Duration::days(2));
+        assert_eq!(2i8.hours(), Duration::hours(2));
+        assert_eq!(2i8.minutes(), Duration::minutes(2));
+        assert_eq!(2i8.seconds(), Duration::seconds(2));
+        assert_eq!(2i8.milliseconds(), Duration::milliseconds(2));
+        assert_eq!(2i8.microseconds(), Duration::microseconds(2));
+        assert_eq!(2i8.nanoseconds(), Duration::nanoseconds(2));
+    }
+
+    #[test]
+    fn u32_duration() {
+        assert_eq!(2u32.weeks(), Duration::weeks(2));
+        assert_eq!(2u32.days(), Duration::days(2));
+        assert_eq!(2u32.hours(), Duration::hours(2));
+        assert_eq!(2u32.minutes(), Duration::minutes(2));
+        assert_eq!(2u32.seconds(), Duration::seconds(2));
+        assert_eq!(2u32.milliseconds(), Duration::milliseconds(2));
+        assert_eq!(2u32.microseconds(), Duration::microseconds(2));
+        assert_eq!(2u32.nanoseconds(), Duration::nanoseconds(2));
+    }
+
+    #[test]
+    fn u16_duration() {
+        assert_eq!(2u16.weeks(), Duration::weeks(2));
+        assert_eq!(2u16.days(), Duration::days(2));
+        assert_eq!(2u16.hours(), Duration::hours(2));
+        assert_eq!(2u16.minutes(), Duration::minutes(2));
+        assert_eq!(2u16.seconds(), Duration::seconds(2));
+        assert_eq!(2u16.milliseconds(), Duration::milliseconds(2));
+        assert_eq!(2u16.microseconds(), Duration::microseconds(2));
+        assert_eq!(2u16.nanoseconds(), Duration::nanoseconds(2));
+    }
+
+    #[test]
+    fn u8_duration() {
+        assert_eq!(2u8.weeks(), Duration::weeks(2));
+        assert_eq!(2u8.days(), Duration::days(2));
+        assert_eq!(2u8.hours(), Duration::hours(2));
+        assert_eq!(2u8.minutes(), Duration::minutes(2));
+        assert_eq!(2u8.seconds(), Duration::seconds(2));
+        assert_eq!(2u8.milliseconds(), Duration::milliseconds(2));
+        assert_eq!(2u8.microseconds(), Duration::microseconds(2));
+        assert_eq!(2u8.nanoseconds(), Duration::nanoseconds(2));
     }
 
     #[test]
