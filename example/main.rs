@@ -1,5 +1,5 @@
 use aion::*;
-use chrono::{Duration, TimeZone, Utc};
+use chrono::{TimeZone, Utc};
 
 fn main() {
     // Easily represent a chrono::Duration
