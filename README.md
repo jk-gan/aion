@@ -3,6 +3,7 @@ Aion is a utility crate, inspired by rails, that allows you to write `Duration` 
 ```rust
 // Easily represent a chrono::Duration
 let two_days = 2.days();
+let two_and_half_days = 2.5.days();
 let attention_span = 1.seconds();
 
 // Add or subtract durations from the current time (UTC)
